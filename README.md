@@ -3,11 +3,18 @@ Overpass API Ruby
 
 A Ruby wrapper for OpenStreetMap Overpass API. Returns a Hash from a query.
 
+Install
+-------
+
+`gem install overpass-api-ruby`
+
+or add `gem 'overpass-api-ruby'` to your Gemfile
+
 Usage
 -----
 
-```
-require_relative 'lib/overpass_api'
+```ruby
+require 'overpass_api_ruby'
 
 ba_query = "<union><query type='relation'><has-kv k='route' v='subway'/></query>" <<
     "</union><union><item/><recurse type='down'/></union>"
@@ -21,16 +28,30 @@ overpass = OverpassAPI.new(options)
 result_hash = overpass.query(ba_query)
 ```
 
+Options on instantiation
+------------------------
+```
+bbox                    Hash. Global bounding box.
+endpoint                String. Defaults to http://overpass-api.de/api/interpreter?data= .
+timeout                 Integer.
+element_init            Integer.
+json                    Boolean. API response is in JSON format, so parse to hash doesn't use the private 
+                        parse_nokogiri method. Default: false.
+cache_expiration_time   Integer. Default: 7200.
+```
+See [Overpass API](http://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide)
+
 Public methods
 --------------
 
-* query
-* raw_query
-* bbox
+```ruby
+query (<String query>)      Intended to pass only children tags of <osm-script>.
 
-TODO
-----
-* Create a gem
+raw_query (<String query>)  The whole query must be passed.
+
+bbox (s,n,w,e)              Defines global bounding box.
+```
+
 
 License
 -------
