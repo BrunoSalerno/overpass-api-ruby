@@ -33,11 +33,13 @@ Options on instantiation
 ------------------------
 ```
 bbox                    Hash. Global bounding box.
-endpoint                String. Defaults to http://overpass-api.de/api/interpreter?data= .
+endpoint                String. 
+                        Defaults to http://overpass-api.de/api/interpreter
 timeout                 Integer.
 element_init            Integer.
-json                    Boolean. API response is in JSON format, so parse to hash doesn't use the private 
-                        parse_nokogiri method. Default: false.
+json                    Boolean. API response is in JSON format, so parse to hash 
+                        doesn't use the private parse_nokogiri method. 
+                        Default: false.
 cache_expiration_time   Integer. Default: 7200.
 ```
 See [Overpass API](http://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide)
