@@ -5,12 +5,12 @@ require 'json'
 require 'nokogiri'
 
 class OverpassAPI
-  VERSION=0.1
+  VERSION='0.1.1'
   DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter?data='
 
   def initialize(args={})
     bbox = args[:bbox]
-    bbox(bbox[:s],bbox[:n],bbox[:w],bbox[:e])
+    bbox(bbox[:s],bbox[:n],bbox[:w],bbox[:e]) if bbox
 
     cache_expiration_time = args[:cache_expiration_time] || 7200
     @cache = Diskcached.new('/tmp/cache',cache_expiration_time,true)
