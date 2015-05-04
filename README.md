@@ -36,7 +36,7 @@ bbox                    Hash. Global bounding box.
 endpoint                String. 
                         Defaults to http://overpass-api.de/api/interpreter
 timeout                 Integer.
-element_init            Integer.
+element_limit           Integer.
 json                    Boolean. API response is in JSON format, so parse to hash 
                         doesn't use the private parse_nokogiri method. 
                         Default: false.
