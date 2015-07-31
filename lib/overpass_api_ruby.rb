@@ -5,7 +5,7 @@ require 'json'
 require 'nokogiri'
 
 class OverpassAPI
-  VERSION='0.1.1'
+  VERSION='0.1.2'
   DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter?data='
 
   def initialize(args={})
@@ -19,6 +19,7 @@ class OverpassAPI
     @json = args[:json] ? "output='json'" : ''
     @timeout = args[:timeout] ? "timeout='#{args[:timeout]}'" : ''
     @element_limit = args[:element_limit] ? "element-limit='#{args[:element_limit]}'" : ''
+    @dont_use_cache = args[:dont_use_cache]
   end
 
   def bbox(s,n,w,e)
@@ -37,12 +38,20 @@ class OverpassAPI
   end
 
   private
+  def request(url)
+    r = HTTPI::Request.new(url)
+    HTTPI.get(r).body
+  end
+
   def perform(query)
     url = URI::encode("#{@endpoint}#{query}")
-    data = @cache.cache("overpass_api_ruby_#{query}") do
-      request = HTTPI::Request.new(url)
-      HTTPI.get(request).body
-    end
+    data = if @dont_use_cache
+                request url
+           else
+                @cache.cache("overpass_api_ruby_#{query}") do
+                    request url
+                end
+           end          
 
     return JSON.parse(data, :symbolize_names=> true)[:elements] unless @json.empty?
 

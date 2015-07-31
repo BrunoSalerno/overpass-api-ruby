@@ -41,6 +41,7 @@ json                    Boolean. API response is in JSON format, so parse to has
                         doesn't use the private parse_nokogiri method. 
                         Default: false.
 cache_expiration_time   Integer. Default: 7200.
+dont_use_cache          Boolean. Default: false.
 ```
 See [Overpass API](http://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide)
 
