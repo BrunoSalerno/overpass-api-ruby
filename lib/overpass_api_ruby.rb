@@ -5,7 +5,7 @@ require 'json'
 require 'nokogiri'
 
 class OverpassAPI
-  VERSION='0.1.2'
+  VERSION='0.1.3'
   DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter?data='
 
   def initialize(args={})
