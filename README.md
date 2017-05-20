@@ -76,6 +76,10 @@ buid_query (<String query>) Returns a String containing the whole query.
 bounding_box (s,n,w,e)      Defines the global bounding box.
 ```
 
+Test
+----
+
+Run `rake spec`
 
 License
 -------
