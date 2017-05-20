@@ -3,8 +3,6 @@ require 'open-uri'
 require 'json'
 
 module OverpassAPI
-  VERSION='0.2'
-
   class Base
     DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter?data='
 
