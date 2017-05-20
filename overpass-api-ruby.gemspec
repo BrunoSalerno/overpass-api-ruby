@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'overpass_api_ruby'
+require_relative 'lib/overpass_api_ruby'
 
 Gem::Specification.new do |spec|
   spec.name          = "overpass-api-ruby"
