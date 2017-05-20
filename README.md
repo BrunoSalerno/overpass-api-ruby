@@ -3,6 +3,8 @@ Overpass API Ruby
 
 A Ruby wrapper for OpenStreetMap Overpass API. Supports both QL and XML.
 
+Note: Version 0.2 introduces breaking changes. Check the file CHANGELOG.md.
+
 Install
 -------
 
