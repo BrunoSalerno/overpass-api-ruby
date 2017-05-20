@@ -1,4 +1,4 @@
-Overpass API Ruby
+Overpass API Ruby [![CircleCI](https://circleci.com/gh/BrunoSalerno/overpass-api-ruby.svg?style=svg)](https://circleci.com/gh/BrunoSalerno/overpass-api-ruby)
 =================
 
 A Ruby wrapper for OpenStreetMap Overpass API. Supports both QL and XML.
