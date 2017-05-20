@@ -33,7 +33,7 @@ response = overpass.query(query)
 
 Using QL:
 
-````ruby
+```ruby
 require 'overpass_api_ruby'
 
 options={:bbox => {:s => -34.705448, :n => -34.526562,
