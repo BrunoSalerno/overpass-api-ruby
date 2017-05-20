@@ -37,8 +37,9 @@ Using QL:
 require 'overpass_api_ruby'
 
 options={:bbox => {:s => -34.705448, :n => -34.526562,
-  :w => -58.531471, :e => -58.335159},
-:timeout => 900}
+                   :w => -58.531471, :e => -58.335159},
+         :timeout => 900,
+         :maxsize => 1073741824}
 
 overpass = OverpassAPI::QL.new(options)
 
