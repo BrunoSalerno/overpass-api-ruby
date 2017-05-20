@@ -1,7 +1,7 @@
 Overpass API Ruby
 =================
 
-A Ruby wrapper for OpenStreetMap Overpass API. Returns a Hash from a query.
+A Ruby wrapper for OpenStreetMap Overpass API. Supports both QL and XML.
 
 Install
 -------
@@ -13,19 +13,38 @@ or add `gem 'overpass-api-ruby'` to your Gemfile
 Usage
 -----
 
+Using XML:
+
 ```ruby
 require 'overpass_api_ruby'
-
-ba_query = "<union><query type='relation'><has-kv k='route' v='subway'/></query>" <<
-    "</union><union><item/><recurse type='down'/></union>"
 
 options={:bbox => {:s => -34.705448, :n => -34.526562,
                    :w => -58.531471, :e => -58.335159},
          :timeout => 900,
          :maxsize => 1073741824}
 
-overpass = OverpassAPI.new(options)
-result_hash = overpass.query(ba_query)
+overpass = OverpassAPI::XML.new(options)
+
+query = "<union><query type='relation'><has-kv k='route' v='subway'/></query>" <<
+        "</union><union><item/><recurse type='down'/></union>"
+
+response = overpass.query(query)
+```
+
+Using QL:
+
+````ruby
+require 'overpass_api_ruby'
+
+options={:bbox => {:s => -34.705448, :n => -34.526562,
+  :w => -58.531471, :e => -58.335159},
+:timeout => 900}
+
+overpass = OverpassAPI::QL.new(options)
+
+query = "rel['route'='subway'];(._;>;);out body;"
+
+response = overpass.query(query)
 ```
 
 Options on instantiation
@@ -41,6 +60,8 @@ See [Overpass API](http://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guid
 
 Public methods
 --------------
+
+Both `QL` and `XML` classes have the same public methods:
 
 ```ruby
 query (<String query>)      Intended to pass only children tags of <osm-script>.

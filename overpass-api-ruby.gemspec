@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Bruno Salerno"]
   spec.email         = ["br.salerno@gmail.com"]
   spec.description   = %q{A Ruby wrapper for OpenStreetMap Overpass API}
-  spec.summary       = %q{}
+  spec.summary       = %q{This gem will allow you to perform queries to OSM Overpass API using QL or XML}
   spec.homepage      = "https://github.com/BrunoSalerno/overpass-api-ruby"
   spec.license       = "MIT"
 
