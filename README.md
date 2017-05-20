@@ -22,8 +22,7 @@ ba_query = "<union><query type='relation'><has-kv k='route' v='subway'/></query>
 options={:bbox => {:s => -34.705448, :n => -34.526562,
                    :w => -58.531471, :e => -58.335159},
          :timeout => 900,
-         :element_limit => 1073741824,
-         :json => true}
+         :maxsize => 1073741824}
 
 overpass = OverpassAPI.new(options)
 result_hash = overpass.query(ba_query)
@@ -33,15 +32,10 @@ Options on instantiation
 ------------------------
 ```
 bbox                    Hash. Global bounding box.
-endpoint                String. 
+endpoint                String.
                         Defaults to http://overpass-api.de/api/interpreter
 timeout                 Integer.
-element_limit           Integer.
-json                    Boolean. API response is in JSON format, so parse to hash 
-                        doesn't use the private parse_nokogiri method. 
-                        Default: false.
-cache_expiration_time   Integer. Default: 7200.
-dont_use_cache          Boolean. Default: false.
+maxsize                 Integer.
 ```
 See [Overpass API](http://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide)
 
