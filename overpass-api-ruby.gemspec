@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Bruno Salerno"]
   spec.email         = ["br.salerno@gmail.com"]
   spec.description   = %q{A Ruby wrapper for OpenStreetMap Overpass API}
-  spec.summary       = %q{Returns a Hash from a query}
+  spec.summary       = %q{This gem will allow you to perform queries to OSM Overpass API using QL or XML}
   spec.homepage      = "https://github.com/BrunoSalerno/overpass-api-ruby"
   spec.license       = "MIT"
 
@@ -19,8 +19,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "httpi", "~> 2.4.0"
-  spec.add_runtime_dependency "diskcached"
-  spec.add_runtime_dependency "nokogiri"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"

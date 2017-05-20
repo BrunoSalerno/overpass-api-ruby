@@ -1,7 +1,9 @@
 Overpass API Ruby
 =================
 
-A Ruby wrapper for OpenStreetMap Overpass API. Returns a Hash from a query.
+A Ruby wrapper for OpenStreetMap Overpass API. Supports both QL and XML.
+
+Note: Version 0.2 introduces breaking changes. Check the file CHANGELOG.md.
 
 Install
 -------
@@ -13,47 +15,65 @@ or add `gem 'overpass-api-ruby'` to your Gemfile
 Usage
 -----
 
+Using XML:
+
 ```ruby
 require 'overpass_api_ruby'
-
-ba_query = "<union><query type='relation'><has-kv k='route' v='subway'/></query>" <<
-    "</union><union><item/><recurse type='down'/></union>"
 
 options={:bbox => {:s => -34.705448, :n => -34.526562,
                    :w => -58.531471, :e => -58.335159},
          :timeout => 900,
-         :element_limit => 1073741824,
-         :json => true}
+         :maxsize => 1073741824}
 
-overpass = OverpassAPI.new(options)
-result_hash = overpass.query(ba_query)
+overpass = OverpassAPI::XML.new(options)
+
+query = "<union><query type='relation'><has-kv k='route' v='subway'/></query>" <<
+        "</union><union><item/><recurse type='down'/></union>"
+
+response = overpass.query(query)
+```
+
+Using QL:
+
+```ruby
+require 'overpass_api_ruby'
+
+options={:bbox => {:s => -34.705448, :n => -34.526562,
+                   :w => -58.531471, :e => -58.335159},
+         :timeout => 900,
+         :maxsize => 1073741824}
+
+overpass = OverpassAPI::QL.new(options)
+
+query = "rel['route'='subway'];(._;>;);out body;"
+
+response = overpass.query(query)
 ```
 
 Options on instantiation
 ------------------------
 ```
 bbox                    Hash. Global bounding box.
-endpoint                String. 
+endpoint                String.
                         Defaults to http://overpass-api.de/api/interpreter
 timeout                 Integer.
-element_limit           Integer.
-json                    Boolean. API response is in JSON format, so parse to hash 
-                        doesn't use the private parse_nokogiri method. 
-                        Default: false.
-cache_expiration_time   Integer. Default: 7200.
-dont_use_cache          Boolean. Default: false.
+maxsize                 Integer.
 ```
 See [Overpass API](http://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide)
 
 Public methods
 --------------
 
+Both `QL` and `XML` classes have the same public methods:
+
 ```ruby
-query (<String query>)      Intended to pass only children tags of <osm-script>.
+query (<String query>)      Performs the query passed using the global values set on instantiation.
 
 raw_query (<String query>)  The whole query must be passed.
 
-bbox (s,n,w,e)              Defines global bounding box.
+buid_query (<String query>) Returns a String containing the whole query.
+
+bounding_box (s,n,w,e)      Defines the global bounding box.
 ```
 
 
