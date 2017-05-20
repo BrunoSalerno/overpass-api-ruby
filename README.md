@@ -64,11 +64,13 @@ Public methods
 Both `QL` and `XML` classes have the same public methods:
 
 ```ruby
-query (<String query>)      Intended to pass only children tags of <osm-script>.
+query (<String query>)      Performs the query passed using the global values set on instantiation.
 
 raw_query (<String query>)  The whole query must be passed.
 
-bbox (s,n,w,e)              Defines global bounding box.
+buid_query (<String query>) Returns a String containing the whole query.
+
+bounding_box (s,n,w,e)      Defines the global bounding box.
 ```
 
 
