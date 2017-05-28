@@ -12,15 +12,13 @@ describe OverpassAPI::Base do
   it "should set the right args" do
     opts = {bbox: {s: 1, n: 2, w: 3, e: 4},
             endpoint: "a.endpoint.com",
-            timeout: 1000,
-            maxsize: 333}
+            timeout: 1000}
 
     base = OverpassAPI::Base.new(opts)
 
     expect(base.instance_variable_get("@bbox")).to eq "1,3,2,4"
     expect(base.instance_variable_get("@endpoint")).to eq "a.endpoint.com"
     expect(base.instance_variable_get("@timeout")).to eq 1000
-    expect(base.instance_variable_get("@maxsize")).to eq 333
   end
 
   it "should set the bounding box" do

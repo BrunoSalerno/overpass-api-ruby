@@ -23,7 +23,7 @@ require 'overpass_api_ruby'
 options={:bbox => {:s => -34.705448, :n => -34.526562,
                    :w => -58.531471, :e => -58.335159},
          :timeout => 900,
-         :maxsize => 1073741824}
+         :element_limit => 1073741824}
 
 overpass = OverpassAPI::XML.new(options)
 
@@ -50,15 +50,27 @@ query = "rel['route'='subway'];(._;>;);out body;"
 response = overpass.query(query)
 ```
 
-Options on instantiation
+Common options on instantiation
 ------------------------
 ```
 bbox                    Hash. Global bounding box.
 endpoint                String.
                         Defaults to http://overpass-api.de/api/interpreter
 timeout                 Integer.
+```
+
+Specific options on instantiation
+------------------------
+QL
+```
 maxsize                 Integer.
 ```
+
+XML
+```
+element_limit           Integer.
+```
+
 See [Overpass API](http://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide)
 
 Public methods

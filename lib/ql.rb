@@ -2,6 +2,12 @@ require_relative "base"
 
 module OverpassAPI
   class QL < Base
+    def initialize(args={})
+      super
+
+      @maxsize = args[:maxsize]
+    end
+
     def build_query(q)
       header = ""
       header << "[bbox:#{@bbox}]" if @bbox

@@ -12,7 +12,6 @@ module OverpassAPI
 
       @endpoint = args[:endpoint] || DEFAULT_ENDPOINT
       @timeout = args[:timeout]
-      @maxsize = args[:maxsize]
     end
 
     def bounding_box(s,n,w,e)

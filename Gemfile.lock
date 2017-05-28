@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    overpass-api-ruby (0.2)
+    overpass-api-ruby (0.2.2)
       httpi (~> 2.4.0)
 
 GEM
