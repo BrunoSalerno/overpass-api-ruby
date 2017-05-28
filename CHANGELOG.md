@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+v 0.2.2
+-------
+Fixes `maxsize` option in the `XML` class. (Issue #4)
+
 v 0.2
 -----
 BREAKING CHANGES
