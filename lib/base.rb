@@ -4,7 +4,7 @@ require 'json'
 
 module OverpassAPI
   class Base
-    DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter?data='
+    DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter'
 
     def initialize(args={})
       bbox = args[:bbox]
@@ -29,7 +29,7 @@ module OverpassAPI
     private
 
     def perform(q)
-      url = URI::encode("#{@endpoint}#{q}")
+      url = URI::encode("#{@endpoint}?data=#{q}")
       r = HTTPI::Request.new(url)
       JSON.parse(HTTPI.get(r).body, symbolize_names: true)
     end

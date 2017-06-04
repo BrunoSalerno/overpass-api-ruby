@@ -4,7 +4,7 @@ require 'httpi'
 
 describe OverpassAPI::Base do
   it "should return the default endpoint" do
-    expect(OverpassAPI::Base::DEFAULT_ENDPOINT).to eq "http://overpass-api.de/api/interpreter?data="
+    expect(OverpassAPI::Base::DEFAULT_ENDPOINT).to eq "http://overpass-api.de/api/interpreter"
     base = OverpassAPI::Base.new
     expect(base.instance_variable_get("@endpoint")).to eq OverpassAPI::Base::DEFAULT_ENDPOINT
   end
@@ -67,7 +67,7 @@ describe OverpassAPI::Base do
     request = "a request"
     body = {key: "value"}
 
-    url = URI::encode("#{OverpassAPI::Base::DEFAULT_ENDPOINT}#{query}")
+    url = URI::encode("#{OverpassAPI::Base::DEFAULT_ENDPOINT}?data=#{query}")
 
     allow(HTTPI::Request).to receive(:new).and_return(request)
     expect(HTTPI::Request).to receive(:new).with(url)
