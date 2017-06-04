@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+v 0.2.3
+--------
+Removes param `data` from ENDPOINT constant (Issue #5)
 
 v 0.2.2
 -------
