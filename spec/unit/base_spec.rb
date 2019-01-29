@@ -65,15 +65,13 @@ describe OverpassAPI::Base do
 
     query = "a query"
     request = "a request"
-    body = {key: "value"}
-
-    url = URI::encode("#{OverpassAPI::Base::DEFAULT_ENDPOINT}?data=#{query}")
+    body = { key: "value" }
 
     allow(HTTPI::Request).to receive(:new).and_return(request)
-    expect(HTTPI::Request).to receive(:new).with(url)
+    expect(HTTPI::Request).to receive(:new).with({ url: OverpassAPI::Base::DEFAULT_ENDPOINT, body: query })
 
-    allow(HTTPI).to receive(:get).and_return(OpenStruct.new(body: body.to_json))
-    expect(HTTPI).to receive(:get).with(request)
+    allow(HTTPI).to receive(:post).and_return(OpenStruct.new(body: body.to_json))
+    expect(HTTPI).to receive(:post).with(request)
 
     response = base.raw_query(query)
     expect(response).to eq body
