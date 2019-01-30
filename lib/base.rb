@@ -1,5 +1,4 @@
 require 'httpi'
-require 'open-uri'
 require 'json'
 
 module OverpassAPI
@@ -29,9 +28,8 @@ module OverpassAPI
     private
 
     def perform(q)
-      url = URI::encode("#{@endpoint}?data=#{q}")
-      r = HTTPI::Request.new(url)
-      JSON.parse(HTTPI.get(r).body, symbolize_names: true)
+      r = HTTPI::Request.new(url: @endpoint, body: q)
+      JSON.parse(HTTPI.post(r).body, symbolize_names: true)
     end
   end
 end
