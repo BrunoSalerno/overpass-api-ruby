@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+v 0.3
+-----
+- Use POST instead of GET.
+- Update rake to version 2.0.6 because of a GitHub vulnerability alert.
+
 v 0.2.3
 --------
 Removes param `data` from ENDPOINT constant (Issue #5)
