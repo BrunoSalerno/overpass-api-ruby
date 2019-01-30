@@ -3,7 +3,7 @@ CHANGELOG
 v 0.3
 -----
 - Use POST instead of GET.
-- Update rake to version 2.0.6 because of a GitHub vulnerability alert.
+- Update rack to version 2.0.6 because of a GitHub vulnerability alert.
 
 v 0.2.3
 --------
