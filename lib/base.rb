@@ -2,33 +2,34 @@ require 'httpi'
 require 'json'
 
 module OverpassAPI
+  # base class, ql and xml extend this
   class Base
-    DEFAULT_ENDPOINT='http://overpass-api.de/api/interpreter'
+    DEFAULT_ENDPOINT = 'http://overpass-api.de/api/interpreter'.freeze
 
-    def initialize(args={})
+    def initialize(args = {})
       bbox = args[:bbox]
-      bounding_box(bbox[:s],bbox[:n],bbox[:w],bbox[:e]) if bbox
+      bounding_box(bbox[:s], bbox[:n], bbox[:w], bbox[:e]) if bbox
 
       @endpoint = args[:endpoint] || DEFAULT_ENDPOINT
       @timeout = args[:timeout]
     end
 
-    def bounding_box(s,n,w,e)
-      @bbox = "#{s},#{w},#{n},#{e}"
+    def bounding_box(south, north, west, east)
+      @bbox = "#{south},#{west},#{north},#{east}"
     end
 
-    def query(q)
-      perform build_query(q)
+    def query(query)
+      perform build_query(query)
     end
 
-    def raw_query(q)
-      perform q
+    def raw_query(query)
+      perform query
     end
 
     private
 
-    def perform(q)
-      r = HTTPI::Request.new(url: @endpoint, body: q)
+    def perform(query)
+      r = HTTPI::Request.new(url: @endpoint, body: query)
       JSON.parse(HTTPI.post(r).body, symbolize_names: true)
     end
   end
