@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+v 0.3.1
+-------
+- Clean up / refactor per rubocop suggestions
+
 v 0.3
 -----
 - Use POST instead of GET.
